@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<style>
+  body {
+  color: blue;
+}
+  div {text-align: center;}
+  body {
+  background-color: lightblue;
+  
+}
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.button:hover {
+  background-color: #008CBA;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+ <div class="login">
+	<h1>Heart Failure Detection Prediction</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+        <label for="age">Age:</label><br>
+    	  <input type="text" name="age" placeholder="Age" required="required" /><br><br>
+        <label for="Gender">Choose a Gender:</label> <br>
+        <select id="Gender" name="Gender">
+        <option value="" disabled selected>Gender</option>
+        <option value="1">Male</option>
+        <option value="0">Female</option>
+        </select>
+        <br><br>
+        <label for="ChestPainType">Choose a Chest Pain Type:</label><br>
+        <select id="ChestPainType" name="ChestPainType">
+        <option value="" disabled selected>Chest Pain Type</option>
+        <option value="0">ASY</option>
+        <option value="1">NAP</option>
+        <option value="2">ATA</option>
+        <option value="3">TA</option>
+        </select>
+        <br><br>
+        <label for="RestingBP">Resting BP:</label><br>
+    	  <input type="text" name="RestingBP" placeholder="RestingBP" required="required" /><br><br>
+
+        <label for="Cholesterol">Cholesterol:</label><br>
+    	  <input type="text" name="Cholesterol" placeholder="Cholesterol" required="Cholesterol" /><br><br>
+       
+        <label for="FastingBS">Choose a Type FastingBS:</label><br>
+        <select id="FastingBS" name="FastingBS">
+        <option value="" disabled selected>Type of FastingBS:</option>
+        <option value="0">FastingBS is greater than 120 mg/dl</option>
+        <option value="1">FastingBS less than 120 mg/dl</option>
+        </select>
+        <br><br>
+        
+        <label for="RestingECG">Choose a RestingECG	:</label><br>
+        <select id="RestingECG" name="RestingECG	">
+        <option value="" disabled selected>Class of RestingECG</option>
+        <option value="0">Normal</option>
+        <option value="1">LVH</option>
+        <option value="2">ST</option>
+        </select>
+        <br><br>
+        
+        <label for="MaxHR">Maximum Heart Rate Achieved:</label><br>
+        <input type="text" name="MaxHR" placeholder="MaxHR" required="required" /><br><br>
+
+        <label for="ExerciseAngina">Exercise-Induced Angina:</label><br>
+        <select id="ExerciseAngina" name="ExerciseAngina">
+        <option value="" disabled selected>Exercise-Induced Angina</option>
+        <option value="0">Yes</option>
+        <option value="1">No</option>
+        </select>
+        <br><br>
+
+        <label for="oldpeak">ST [Numeric value measured in depression]:</label><br>
+        <input type="text" name="oldpeak" placeholder="oldpeak" required="required" /><br><br>
+
+        <label for="ST_Slope">The slope of the peak exercise ST segment:</label><br>
+        <select id="ST_Slope" name="ST_Slope">
+        <option value="" disabled selected>Choose ST:</option>
+        <option value="0">Flat</option>
+        <option value="1">Up</option>
+        <option value="2">Down</option>
+
+        </select>
+        <br><br>
+
+
+
+
+
+
+        <button type="submit" class="button">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
